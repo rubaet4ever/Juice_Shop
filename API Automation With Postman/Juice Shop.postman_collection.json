@@ -1,0 +1,325 @@
+{
+	"info": {
+		"_postman_id": "b4d2556b-a143-4a3c-ab5b-1ccf8a9775bd",
+		"name": "Juice Shop",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "16417876"
+	},
+	"item": [
+		{
+			"name": "Step 1",
+			"item": [
+				{
+					"name": "Sign In",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    console.log('User signed in successfully.');\r",
+									" \r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJydWJhZXRAYnMuY29tIiwicm9sZXMiOlsiRU5EX1VTRVIiLCJTdXBlciBBZG1pbmlzdHJhdG9yIl0sImlhdCI6MTcxNjQzNzA2NSwiZXhwIjoxNzE2NDQwNjY1fQ.ZbWRmLhYeISWyDIF-YTlVv6Re4Zuk4IGJpHEgDnwKjk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/rest/user/whoami",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"rest",
+								"user",
+								"whoami"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Item",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    console.log('Item added to basket successfully.');\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJydWJhZXRAYnMuY29tIiwicm9sZXMiOlsiRU5EX1VTRVIiLCJTdXBlciBBZG1pbmlzdHJhdG9yIl0sImlhdCI6MTcxNjQzNzA2NSwiZXhwIjoxNzE2NDQwNjY1fQ.ZbWRmLhYeISWyDIF-YTlVv6Re4Zuk4IGJpHEgDnwKjk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/BasketItems/25",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"BasketItems",
+								"25"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Verify Item",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    console.log('Verified: 1 item is in the basket.');\r",
+									"    return response.data.token;\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/Products/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"Products",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Step 2",
+			"item": [
+				{
+					"name": "Sign In",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Add Item",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    console.log(`Item ${1} added to basket successfully.`);\r",
+									"    console.log(`Item ${2} added to basket successfully.`);\r",
+									"    return response.data.token;\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/Products",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"Products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Item",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									" const deleteItemFromBasket = async (token, itemId) => {\r",
+									"  const deleteFromBasketUrl = `${baseUrl}/basket/delete`;\r",
+									"  const headers = {\r",
+									"    Authorization: `Bearer ${token}`,\r",
+									"    'Content-Type': 'application/json'\r",
+									"  };\r",
+									" \r",
+									" const itemPayload = {\r",
+									" itemId: 1 \r",
+									" };\r",
+									" try {\r",
+									"    const response = await.post(deleteFromBasketUrl, itemPayload, { headers });\r",
+									"    if (response.status === 200) {\r",
+									"      console.log(`Item ${1} removed from basket successfully.`);\r",
+									"    }\r",
+									"  } catch (error) {\r",
+									"    console.error(`Failed to remove item ${itemId} from basket:`, error.response ? error.response.data : error.message);\r",
+									"    process.exit(1);\r",
+									"  }"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/BasketItems/31",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"BasketItems",
+								"31"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Validate Item",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const verifyBasket = async (token) => {\r",
+									"  const getBasketUrl = `${baseUrl}/basket`;\r",
+									"  const headers = {\r",
+									"    Authorization: `Bearer ${token}`\r",
+									"  };\r",
+									"\r",
+									"try {\r",
+									"    const response = await.get(getBasketUrl, { headers });\r",
+									"    if (response.status === 200) {\r",
+									"      const basket = response.data.basket;\r",
+									"      if (basket && basket.length === 1) {\r",
+									"        console.log('Verified: Only 1 item remains in the basket.');\r",
+									"      } else {\r",
+									"        console.error('Basket verification failed.');\r",
+									"      }\r",
+									"    }\r",
+									"  }\r",
+									"  catch (error) {\r",
+									"    console.error('Failed to retrieve basket:', error.response ? error.response.data : error.message);\r",
+									"    process.exit(1);\r",
+									"  };"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/BasketItems/30",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"BasketItems",
+								"30"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "https://juice-shop.herokuapp.com",
+			"type": "string"
+		}
+	]
+}
