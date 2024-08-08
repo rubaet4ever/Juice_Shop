@@ -1,5 +1,4 @@
-
-- 🔭<h1 align="left">TASKS</h1>
+<h1 align="left">TASKS</h1>
 
 - **UI Automation**
   
