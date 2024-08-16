@@ -1,3 +1,8 @@
+<h1 align="left">Transmedia Inc</h1>
+
+1. Using Selenium WebDriver framework/tool for UI test
+2. Using Postman framework/tool API test
+
 <h1 align="left">TASKS</h1>
 
 - **UI Automation**
@@ -7,8 +12,8 @@
  
 - **API Automation**
 
-      1. Sign in the user, add 1 item to the basket, verify that 1 item is in the basket.
-      2. Sign in the user, add 2 items to the basket, delete 1 item and validate that only 1 item remains in the basket
+      1. Sign in to the user, add 1 item to the basket, and verify that 1 item is in the basket.
+      2. Sign in the user, add 2 items to the basket, delete 1 item, and validate that only 1 item remains in the basket
   
 <h1 align="left">Technology</h1>
 
