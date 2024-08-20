@@ -17,7 +17,7 @@
   
 <h1 align="left">Technology</h1>
 
-- Framework: Selenium
+- Framework: Selenium WebDriver
 - IDE: Eclipse
 - Build tool: Maven
 - Language: Java, JavaScript, HTML & CSS
